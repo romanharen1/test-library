@@ -4,20 +4,27 @@ on:
       - 'v*'
 
 jobs:
-  update-vcpkg:
+  update-registry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clone vcpkg registry
-        run: git clone https://github.com/empresa/vcpkg-registry.git
+      - name: Clona registry
+        run: |
+          git clone https://github.com/empresa/vcpkg_registry.git
+          cd vcpkg_registry
+          chmod +x scripts/update-ports.sh
 
       - name: Atualiza portfile
-        run: ./scripts/atualiza_portfile.sh ${{ github.ref_name }}
-
-      - name: Commit e Push
         run: |
-          cd vcpkg-registry
+          cd vcpkg_registry/scripts
+          ./update-ports.sh ${{ github.repository }} ${{ github.ref_name }}
+
+      - name: Commit e push para registry
+        run: |
+          cd vcpkg_registry
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git add .
-          git commit -m "Atualiza $LIB_NAME para ${{ github.ref_name }}"
+          git commit -m "Atualiza port para versão ${{ github.ref_name }}"
           git push
