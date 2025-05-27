@@ -11,7 +11,7 @@ jobs:
 
       - name: Clona registry
         run: |
-          git clone https://github.com/empresa/vcpkg_registry.git
+          git clone https://github.com/romanharen1/vcpkg_registry.git
           cd vcpkg_registry
           chmod +x scripts/update-ports.sh
 
