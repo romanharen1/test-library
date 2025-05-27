@@ -11,6 +11,10 @@ jobs:
 
       - name: Clona registry
         run: |
+          if [ -z "${{ secrets.REGISTRY_PAT }}" ]; then
+            echo "Error: REGISTRY_PAT secret is not set."
+            exit 1
+          fi
           git clone https://${{ secrets.REGISTRY_PAT }}@github.com/romanharen1/vcpkg_registry.git
           cd vcpkg_registry
           chmod +x scripts/update-ports.sh
