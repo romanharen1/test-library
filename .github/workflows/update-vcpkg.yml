@@ -1,0 +1,23 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  update-vcpkg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone vcpkg registry
+        run: git clone https://github.com/empresa/vcpkg-registry.git
+
+      - name: Atualiza portfile
+        run: ./scripts/atualiza_portfile.sh ${{ github.ref_name }}
+
+      - name: Commit e Push
+        run: |
+          cd vcpkg-registry
+          git add .
+          git commit -m "Atualiza $LIB_NAME para ${{ github.ref_name }}"
+          git push
