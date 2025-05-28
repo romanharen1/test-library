@@ -38,3 +38,17 @@ int potencia(int base, int expoente)
     }
     return resultado;
 }
+
+int raiz_quadrada(int numero)
+{
+    if (numero < 0)
+    {
+        throw std::invalid_argument("Raiz quadrada de número negativo não é permitida.");
+    }
+    int resultado = 0;
+    while (resultado * resultado <= numero)
+    {
+        resultado++;
+    }
+    return resultado - 1; // Retorna o maior inteiro cuja raiz quadrada é menor ou igual ao número
+}
