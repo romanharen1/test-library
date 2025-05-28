@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        
+      - name: Configura Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
 
       - name: Clona registry
         run: |
@@ -27,8 +32,4 @@ jobs:
       - name: Commit e push para registry
         run: |
           cd vcpkg_registry
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Atualiza port para versão ${{ github.ref_name }}"
           git push

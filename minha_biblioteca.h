@@ -7,5 +7,6 @@ int multiplicar(int a, int b);
 int dividir(int a, int b);
 int potencia(int base, int expoente);
 int raiz_quadrada(int numero);
+int fatorial(int numero);
 
 #endif

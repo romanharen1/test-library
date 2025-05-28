@@ -52,3 +52,17 @@ int raiz_quadrada(int numero)
     }
     return resultado - 1; // Retorna o maior inteiro cuja raiz quadrada é menor ou igual ao número
 }
+
+int fatorial(int numero)
+{
+    if (numero < 0)
+    {
+        throw std::invalid_argument("Fatorial de número negativo não é permitido.");
+    }
+    int resultado = 1;
+    for (int i = 2; i <= numero; ++i)
+    {
+        resultado *= i;
+    }
+    return resultado;
+}
