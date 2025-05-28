@@ -24,3 +24,17 @@ int dividir(int a, int b)
     }
     return a / b;
 }
+
+int potencia(int base, int expoente)
+{
+    if (expoente < 0)
+    {
+        throw std::invalid_argument("Expoente negativo não é permitido.");
+    }
+    int resultado = 1;
+    for (int i = 0; i < expoente; ++i)
+    {
+        resultado *= base;
+    }
+    return resultado;
+}
