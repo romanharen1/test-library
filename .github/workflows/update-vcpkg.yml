@@ -21,9 +21,5 @@ jobs:
 
       - name: Atualiza portfile
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
           cd vcpkg_registry/scripts
           ./update-ports.sh ${{ github.repository }} ${{ github.ref_name }}
-          cd ..
-          git push
